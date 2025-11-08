@@ -11,7 +11,7 @@ function makevalues(list){
    let kije = ""
    for(let i = 0; i < list.length; i++){
      kije += `
-        <tr>
+        <tr style="width: 100%">
           <td>Value ${i}</td>
           <td>Level 0/10 (*1)</td>
           <td>${format(list[i],4)}</td>
