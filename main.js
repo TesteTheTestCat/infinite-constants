@@ -26,5 +26,5 @@ setInterval(() => {
     }
     player.m_number = player.m_number.add(player.m_values[0].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[0])))
     gel("m_number").textContent = format(player.m_number,6)
-    gel("m_values").textContent = makevalues(player.m_values)
+    gel("m_values").innerHTML = makevalues(player.m_values)
 }, 1000/tickspersecond);
