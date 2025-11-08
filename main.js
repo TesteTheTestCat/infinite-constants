@@ -29,6 +29,6 @@ setInterval(() => {
     gel("m_number").textContent = format(player.m_number,6)
     gel("m_values").innerHTML = makevalues(player.m_values,player.m_valuebuys)
     for(let i = 0; i < player.m_values.length; i++){
-        gel("m_buybutton"+i).onclick = () => {console.log(player.m_values)}
+        gel(`m_buybutton${i}`).onclick = () => {console.log(player.m_values[i])}
     }
 }, 1000/tickspersecond);
