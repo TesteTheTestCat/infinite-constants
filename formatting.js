@@ -27,7 +27,7 @@ function sumValues(x) {
 	if (!x[0]) return new Decimal(0)
 	return x.reduce((a, b) => Decimal.add(a, b))
 }
-function format(decimal, precision=2, whole=false) {
+export function format(decimal, precision=2, whole=false) {
 	decimal = new Decimal(decimal)
 	if (isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)) {
 		return "NaN"
