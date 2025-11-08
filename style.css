@@ -5,6 +5,9 @@ body {
   color: white;
   text-align: center;
 }
-.longtable{
+table {
+    width: 100%;
+}
+tr {
     width: 100%;
 }

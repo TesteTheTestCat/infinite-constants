@@ -12,7 +12,7 @@ function makevalues(list){
    for(let i = 0; i < list.length; i++){
      kije += `
         <tr style="width: 100%">
-          <td>Value ${i}</td>
+          <td>Value ${i+1}</td>
           <td>Level 0/10 (*1)</td>
           <td>${format(list[i],4)}</td>
           <td><button>${format(new Decimal(10).pow(i+1))}</button></td>
