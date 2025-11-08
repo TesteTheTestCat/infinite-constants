@@ -28,4 +28,7 @@ setInterval(() => {
     player.m_number = player.m_number.add(player.m_values[0].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[0])))
     gel("m_number").textContent = format(player.m_number,6)
     gel("m_values").innerHTML = makevalues(player.m_values,player.m_valuebuys)
+    for(let i = 0; i < player.m_values.length; i++){
+        gel("m_buybutton"+i).onclick = () => {console.log(player.m_values)}
+    }
 }, 1000/tickspersecond);
