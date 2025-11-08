@@ -15,7 +15,7 @@ function makevalues(list,meow){
           <td>Value ${i+1}</td>
           <td>Level ${formatWhole(meow[i])}/10 (*${new Decimal(2).pow(meow[i])})</td>
           <td>${format(list[i],4)}</td>
-          <td><button id="m_buybutton${i}" onclick="player.m_values[${i}] = player.m_values[${i}].add(1); player.m_valuebuys[${i}] = player.m_valuebuys[${i}].add(1)">${format(new Decimal(10).pow(i+1))}</button></td>
+          <td><button id="m_buybutton${i}" onclick="console.log(player.m_values)>${format(new Decimal(10).pow(i+1))}</button></td>
         </tr><br>`
      
    }
@@ -28,7 +28,4 @@ setInterval(() => {
     player.m_number = player.m_number.add(player.m_values[0].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[0])))
     gel("m_number").textContent = format(player.m_number,6)
     gel("m_values").innerHTML = makevalues(player.m_values,player.m_valuebuys)
-    for(let i = 0; i < player.m_values.length; i++){
-        console.log(gel(`m_buybutton${i}`))
-    }
 }, 1000/tickspersecond);
