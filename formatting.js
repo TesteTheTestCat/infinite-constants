@@ -49,7 +49,7 @@ export function format(decimal, precision=2, whole=false) {
 	else if (decimal.gt("1e-100000")) return exponentialFormat(decimal, decimal.gte("1e-1000")?precision:0)
 	else return "1/("+format(decimal.pow(-1), precision)+")"
 }
-function formatWhole(decimal, reallyWhole=false) {
+export function formatWhole(decimal, reallyWhole=false) {
 	decimal = new Decimal(decimal)
 	if (decimal.gte(1e9)) return format(decimal, 2)
 	if (decimal.lte(0.95) && !decimal.eq(0) && !reallyWhole) return format(decimal, 2)
