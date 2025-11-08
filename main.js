@@ -15,7 +15,7 @@ function makevalues(list){
           <td>Value ${i}</td>
           <td>Level 0/10 (*1)</td>
           <td>${format(list[i],4)}</td>
-          <td><button>${format(new Decimal(10).times(i))}</button></td>
+          <td><button>${format(new Decimal(10).pow(i+1))}</button></td>
         </tr><br>`
    }
    return kije

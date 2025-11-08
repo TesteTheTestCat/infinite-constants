@@ -1,0 +1,10 @@
+body {
+  font-family: monospace;
+  background-color: black;
+  margin: 7.5px;
+  color: white;
+  text-align: center;
+}
+.longtable{
+    width: 100%;
+}
