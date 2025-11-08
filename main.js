@@ -15,9 +15,9 @@ function makevalues(list,meow){
           <td>Value ${i+1}</td>
           <td>Level ${formatWhole(meow[i])}/10 (*${new Decimal(2).pow(meow[i])})</td>
           <td>${format(list[i],4)}</td>
-          <td><button id="m_buybutton${i}">${format(new Decimal(10).pow(i+1))}</button></td>
+          <td><button id="m_buybutton${i}" onclick="player.m_values[${i}] = player.m_values[${i}.add(1); player.m_valuebuys[${i} = player.m_valuebuys[${i}.add(1)">${format(new Decimal(10).pow(i+1))}</button></td>
         </tr><br>`
-     gel(`m_buybutton${i}`).onclick = () => {player.m_values = player.m_values.add(1); player.m_valuebuys = player.m_valuebuys.add(1)}
+     // gel(`m_buybutton${i}`).onclick = () => {player.m_values[i] = player.m_values[i].add(1); player.m_valuebuys[i] = player.m_valuebuys[i].add(1)}
    }
    return kije
 }
