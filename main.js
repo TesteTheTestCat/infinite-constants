@@ -25,7 +25,7 @@ function makevalues(list,meow){
 function createeventlistener(i) {
   if (eventsmade[i] >= 1){
     gel(`m_buybutton${i}`).addEventListener("click", () => {
-      console.log(player.m_values[i])
+      console.log("this works")
     }, false)
     eventsmade[i] = 1
   }
