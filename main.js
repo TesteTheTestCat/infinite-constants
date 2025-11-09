@@ -5,6 +5,7 @@ let player = {
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
     m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)]
 }
+let eventsmade = [0,0,0,0]
 const gel = (name) => document.getElementById(name)
 const tickspersecond = 20
 function makevalues(list,meow){
@@ -21,6 +22,14 @@ function makevalues(list,meow){
    }
    return kije
 }
+function createeventlistener(i) {
+  if (eventsmade[i] >= 1){
+    gel(`m_buybutton${i}`).addEventListener("click", () => {
+      console.log(player.m_values[i])
+    }, false)
+    eventsmade[i] = 0
+  }
+}
 setInterval(() => {
     for(let i = 0; i < player.m_values.length-1; i++){
        player.m_values[i] = player.m_values[i].add(player.m_values[i+1].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[i+1])))
@@ -29,8 +38,6 @@ setInterval(() => {
     gel("m_number").textContent = format(player.m_number,6)
     gel("m_values").innerHTML = makevalues(player.m_values,player.m_valuebuys)
     for(let i = 0; i < player.m_values.length; i++){
-        //gel(`m_buybutton${i}`).addEventListener("click", () => {
-        //  console.log(player.m_values[i])
-        //}, false)
+        createeventlistener(i)
     }
 }, 1000/tickspersecond);
