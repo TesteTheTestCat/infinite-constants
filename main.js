@@ -27,7 +27,7 @@ function createeventlistener(i) {
     gel(`m_buybutton${i}`).addEventListener("click", () => {
       console.log(player.m_values[i])
     }, false)
-    eventsmade[i] = 0
+    eventsmade[i] = 1
   }
 }
 setInterval(() => {
