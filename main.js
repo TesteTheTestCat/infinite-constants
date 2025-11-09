@@ -1,6 +1,4 @@
-// import {format, formatWhole} from "./formatting.js";
-const format = require("./formatting.js")
-const formatWhole = require("./formatting.js")
+import {format, formatWhole} from "./formatting.js";
 let player = {
     version: "alpha0.03",
     m_number: new Decimal(10),
@@ -17,7 +15,7 @@ function makevalues(list,meow){
           <td>Value ${i+1}</td>
           <td>Level ${formatWhole(meow[i])}/10 (*${new Decimal(2).pow(meow[i])})</td>
           <td>${format(list[i],4)}</td>
-          <td><button id="m_buybutton${i}" onclick="console.log(player.m_values)">${format(new Decimal(10).pow(i+1))}</button></td>
+          <td><button id="m_buybutton${i}" onclick="console.log('meow')">${format(new Decimal(10).pow(i+1))}</button></td>
         </tr><br>`
      
    }
@@ -31,8 +29,8 @@ setInterval(() => {
     gel("m_number").textContent = format(player.m_number,6)
     gel("m_values").innerHTML = makevalues(player.m_values,player.m_valuebuys)
     for(let i = 0; i < player.m_values.length; i++){
-        gel(`m_buybutton${i}`).addEventListener("click", () => {
-          console.log(player.m_values[i])
-        }, false)
+        //gel(`m_buybutton${i}`).addEventListener("click", () => {
+        //  console.log(player.m_values[i])
+        //}, false)
     }
 }, 1000/tickspersecond);
