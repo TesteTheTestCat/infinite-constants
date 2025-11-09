@@ -1,4 +1,6 @@
-import {format, formatWhole} from "./formatting.js";
+// import {format, formatWhole} from "./formatting.js";
+const format = require("./formatting.js")
+const formatWhole = require("./formatting.js")
 let player = {
     version: "alpha0.03",
     m_number: new Decimal(10),
