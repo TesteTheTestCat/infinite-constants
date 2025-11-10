@@ -27,7 +27,8 @@ function setupvalues(){
       gel("m_values").innerHTML = makevalues(player.m_values,player.m_valuebuys)
       lastvaluelength = player.m_values.length
       for (let i = 0; i < lastvaluelength; i++){
-      gel(`m_buybutton${i}`).onclick = () => {console.log('meow')}
+        let j = gel(`m_buybutton${i}`)
+        j.onclick = () => {console.log('meow')}
    }
    }
    for (let i = 0; i < lastvaluelength; i++){
