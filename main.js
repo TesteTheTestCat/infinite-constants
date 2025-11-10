@@ -28,7 +28,7 @@ function setupvalues(){
       lastvaluelength = player.m_values.length
       for (let i = 0; i < lastvaluelength; i++){
         let j = gel(`m_buybutton${i}`)
-        j.onclick = () => {player.m_valuebuys[i] = player.m_valuebuys[i].plus(1); player.m_values[i] = player.m_values[i].plus(1); console.log(i); console.log("is working :3")}
+        j.onclick = () => {buyvalue(i)}
       }
    }
    for (let i = 0; i < lastvaluelength; i++){
@@ -37,11 +37,19 @@ function setupvalues(){
       gel(`m_buybutton${i}`).textContent = format(new Decimal(10).pow(new Decimal(2).pow(i)).pow(player.m_valuebuys[i].plus(1)))
    }
 }
+function buyvalue(i){
+  if(player.m_number.gte(new Decimal(10).pow(new Decimal(2).pow(i)).pow(player.m_valuebuys[i].plus(1))) && player.m_valuebuys[i].lt(10)){
+   player.m_number = player.m_number.minus(new Decimal(10).pow(new Decimal(2).pow(i)).pow(player.m_valuebuys[i].plus(1)))
+   player.m_values[i] = player.m_values[i].plus(1)
+   player.m_valuebuys[i] = player.m_valuebuys[i].plus(1)
+  }
+}
 setInterval(() => {
     for(let i = 0; i < player.m_values.length-1; i++){
        player.m_values[i] = player.m_values[i].add(player.m_values[i+1].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[i+1])))
     }
     player.m_number = player.m_number.add(player.m_values[0].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[0])))
-    gel("m_number").textContent = format(player.m_number,6)
+    gel("m_number").textContent = format(player.m_number,8)
+    gel("m_numberps").textContent = format(player.m_number.add(player.m_values[0].times(new Decimal(2).pow(player.m_valuebuys[0]))),6)
     setupvalues()
 }, 1000/tickspersecond);
