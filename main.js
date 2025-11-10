@@ -28,10 +28,8 @@ function setupvalues(){
       lastvaluelength = player.m_values.length
       for (let i = 0; i < lastvaluelength; i++){
         let j = gel(`m_buybutton${i}`)
-        j.onclick = () => {console.log('meow')}
+        j.onclick = () => {player.m_valuebuys[i] = player.m_valuebuys[i].plus(1); player.m_values[i] = player.m_values[i].plus(1)}
       }
-      let k = gel(`m_buybutton0`)
-      k.onclick = () => {console.log('meow mrrp!')}
    }
    for (let i = 0; i < lastvaluelength; i++){
       gel(`m_valueamount${i}`).textContent = format(player.m_values[i])
@@ -43,6 +41,5 @@ setInterval(() => {
     }
     player.m_number = player.m_number.add(player.m_values[0].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[0])))
     gel("m_number").textContent = format(player.m_number,6)
-   // gel("m_values").innerHTML = makevalues(player.m_values,player.m_valuebuys)
     setupvalues()
 }, 1000/tickspersecond);
