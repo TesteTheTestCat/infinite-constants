@@ -13,10 +13,10 @@ function makevalues(list,meow){
    for(let i = 0; i < list.length; i++){
      kije += `
         <tr style="width: 100%">
-          <td>Value ${i+1}</td>
-          <td>Level <span id="m_valuelevel${i}"></span></td>
-          <td><span id="m_valueamount${i}"></span></td>
-          <td><button id="m_buybutton${i}" onclick="console.log('meow')">${format(new Decimal(10).pow(i+1))}</button></td>
+          <td style="width: 15%">Value ${i+1}</td>
+          <td style="width: 35%">Level <span id="m_valuelevel${i}"></span></td>
+          <td style="width: 30%"><span id="m_valueamount${i}"></span></td>
+          <td style="width: 20%"><button id="m_buybutton${i}" onclick="console.log('meow')">${format(new Decimal(10).pow(i+1))}</button></td>
         </tr><br>`
      
    }
