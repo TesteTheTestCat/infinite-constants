@@ -14,7 +14,7 @@ function makevalues(list,meow){
      kije += `
         <tr style="width: 100%">
           <td>Value ${i+1}</td>
-          <td>Level ${formatWhole(meow[i])}/10 (*${new Decimal(2).pow(meow[i])})</td>
+          <td>Level <span id="m_valuelevel${i}"></span></td>
           <td><span id="m_valueamount${i}"></span></td>
           <td><button id="m_buybutton${i}" onclick="console.log('meow')">${format(new Decimal(10).pow(i+1))}</button></td>
         </tr><br>`
@@ -33,6 +33,7 @@ function setupvalues(){
    }
    for (let i = 0; i < lastvaluelength; i++){
       gel(`m_valueamount${i}`).textContent = format(player.m_values[i])
+      gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/10 (*${new Decimal(2).pow(player.m_valuebuys[i])})`
    }
 }
 setInterval(() => {
