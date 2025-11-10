@@ -28,7 +28,7 @@ function setupvalues(){
       lastvaluelength = player.m_values.length
       for (let i = 0; i < lastvaluelength; i++){
         let j = gel(`m_buybutton${i}`)
-        j.onclick = () => {player.m_valuebuys[i] = player.m_valuebuys[i].plus(1); player.m_values[i] = player.m_values[i].plus(1)}
+        j.onclick = () => {player.m_valuebuys[i] = player.m_valuebuys[i].plus(1); player.m_values[i] = player.m_values[i].plus(1); console.log(i); console.log("is working :3")}
       }
    }
    for (let i = 0; i < lastvaluelength; i++){
