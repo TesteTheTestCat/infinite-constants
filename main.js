@@ -33,7 +33,7 @@ function setupvalues(){
    }
    for (let i = 0; i < lastvaluelength; i++){
       gel(`m_valueamount${i}`).textContent = format(player.m_values[i])
-      gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/10 (*${new Decimal(2).pow(player.m_valuebuys[i])})`
+      gel(`m_valuelevel${i}`).textContent = `${format(player.m_valuebuys[i], 0, true)}/10 (*${new Decimal(2).pow(player.m_valuebuys[i])})`
    }
 }
 setInterval(() => {
