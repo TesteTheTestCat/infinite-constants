@@ -29,7 +29,9 @@ function setupvalues(){
       for (let i = 0; i < lastvaluelength; i++){
         let j = gel(`m_buybutton${i}`)
         j.onclick = () => {console.log('meow')}
-   }
+      }
+      let k = gel(`m_buybutton0`)
+      k.onclick = () => {console.log('meow mrrp!')}
    }
    for (let i = 0; i < lastvaluelength; i++){
       gel(`m_valueamount${i}`).textContent = format(player.m_values[i])
