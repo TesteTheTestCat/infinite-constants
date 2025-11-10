@@ -50,6 +50,6 @@ setInterval(() => {
     }
     player.m_number = player.m_number.add(player.m_values[0].divide(tickspersecond).times(new Decimal(2).pow(player.m_valuebuys[0])))
     gel("m_number").textContent = format(player.m_number,8)
-    gel("m_numberps").textContent = format(player.m_number.add(player.m_values[0].times(new Decimal(2).pow(player.m_valuebuys[0]))),6)
+    gel("m_numberps").textContent = format(player.m_values[0].times(new Decimal(2).pow(player.m_valuebuys[0])),6)+"/s"
     setupvalues()
 }, 1000/tickspersecond);
