@@ -39,7 +39,7 @@ function setupvalues(){
    }
 }
 function buyvalue(i){
-  if(player.m_number.gte(valuecost(i,player.m_valuebuys[i]) && player.m_valuebuys[i].lt(10))){
+  if(player.m_number.gte(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(10))){
    player.m_number = player.m_number.minus(valuecost(i,player.m_valuebuys[i]))
    player.m_values[i] = player.m_values[i].plus(1)
    player.m_valuebuys[i] = player.m_valuebuys[i].plus(1)
