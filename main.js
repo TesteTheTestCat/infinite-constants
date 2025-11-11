@@ -1,4 +1,5 @@
 import {format, formatWhole} from "./formatting.js";
+import {valuecost} from "./helper.js"
 let player = {
     version: "alpha0.03",
     m_number: new Decimal(10),
@@ -34,12 +35,12 @@ function setupvalues(){
    for (let i = 0; i < lastvaluelength; i++){
       gel(`m_valueamount${i}`).textContent = format(player.m_values[i])
       gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/10 (*${formatWhole(new Decimal(2).pow(player.m_valuebuys[i]))})`
-      gel(`m_buybutton${i}`).textContent = format(new Decimal(10).pow(new Decimal(2).pow(i)).pow(player.m_valuebuys[i].plus(1)))
+      gel(`m_buybutton${i}`).textContent = format(valuecost(i,player.m_valuebuys[i]))
    }
 }
 function buyvalue(i){
-  if(player.m_number.gte(new Decimal(10).pow(new Decimal(2).pow(i)).pow(player.m_valuebuys[i].plus(1))) && player.m_valuebuys[i].lt(10)){
-   player.m_number = player.m_number.minus(new Decimal(10).pow(new Decimal(2).pow(i)).pow(player.m_valuebuys[i].plus(1)))
+  if(player.m_number.gte(valuecost(i,player.m_valuebuys[i]) && player.m_valuebuys[i].lt(10))){
+   player.m_number = player.m_number.minus(valuecost(i,player.m_valuebuys[i]))
    player.m_values[i] = player.m_values[i].plus(1)
    player.m_valuebuys[i] = player.m_valuebuys[i].plus(1)
   }
