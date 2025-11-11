@@ -13,6 +13,8 @@ tr {
 }
 button {
   user-select: none;
+  background-color: black;
+  color: white;
   font-family: monospace;
   border-color: white;
   border: 3px solid;
