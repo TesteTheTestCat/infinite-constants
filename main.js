@@ -7,8 +7,6 @@ let player = {
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
     m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)]
 }
-gel("overlay").style.display = "none"
-gel("loading").style.display = "none"
 let lastvaluelength = 0
 const maxticks = 10000 //the maximum amount of ticks before ticksize increases
 const gel = (name) => document.getElementById(name)
@@ -50,6 +48,7 @@ function buyvalue(i){
   }
 }
 let deltatime = 0
+gel("loading").style.display = "none"
 setInterval(() => {
    deltatime += (Date.now() - player.lasttick)/1000 //this is needed. trust me.
    let ticksize = 1/tickspersecond
