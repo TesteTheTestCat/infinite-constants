@@ -54,9 +54,9 @@ setInterval(() => {
    if (deltatime/tickspersecond >= maxticks) {ticksize = deltatime/maxticks}
    while (deltatime >= ticksize){
     for(let i = 0; i < player.m_values.length-1; i++){
-       player.m_values[i] = player.m_values[i].add(player.m_values[i+1].divide(ticksize).times(new Decimal(2).pow(player.m_valuebuys[i+1])))
+       player.m_values[i] = player.m_values[i].add(player.m_values[i+1].times(ticksize).times(new Decimal(2).pow(player.m_valuebuys[i+1])))
     }
-    player.m_number = player.m_number.add(player.m_values[0].divide(ticksize).times(new Decimal(2).pow(player.m_valuebuys[0])))
+    player.m_number = player.m_number.add(player.m_values[0].times(ticksize).times(new Decimal(2).pow(player.m_valuebuys[0])))
     deltatime -= ticksize
    }
     gel("m_number").textContent = format(player.m_number,8)
