@@ -48,7 +48,7 @@ function buyvalue(i){
   }
 }
 setInterval(() => {
-   let deltatime = (Date.now() - player.lasttick)/1000 //straight up just deltatime
+   let deltatime = (Date.now() - player.lasttick)/1000000 //straight up just deltatime
    let ticksize = 1/tickspersecond
    if (deltatime/tickspersecond >= maxticks) {ticksize = deltatime/maxticks}
    while (deltatime >= ticksize){
