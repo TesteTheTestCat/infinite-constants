@@ -47,8 +47,9 @@ function buyvalue(i){
    player.m_valuebuys[i] = player.m_valuebuys[i].plus(1)
   }
 }
+let deltatime = 0
 setInterval(() => {
-   let deltatime = (Date.now() - player.lasttick)/1000000 //straight up just deltatime
+   deltatime += (Date.now() - player.lasttick)/1000 //this is needed. trust me.
    let ticksize = 1/tickspersecond
    if (deltatime/tickspersecond >= maxticks) {ticksize = deltatime/maxticks}
    while (deltatime >= ticksize){
