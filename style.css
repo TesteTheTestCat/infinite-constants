@@ -17,9 +17,6 @@ h2 {
 .notlong{
   width:auto;
 }
-.upgradebuttons{
-  width: 50%;
-}
 button {
   user-select: none;
   background-color: black;
