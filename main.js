@@ -1,11 +1,12 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost} from "./helper.js"
+import {valuecost,levelupupgradecost} from "./helper.js"
 let player = {
     version: "alpha0.03",
     lasttick: Date.now(),
     m_number: new Decimal(10),
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
-    m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)]
+    m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
+    u_levelup: new Decimal(0)
 }
 let lastvaluelength = 0
 const maxticks = 10000 //the maximum amount of ticks before ticksize increases
@@ -36,12 +37,13 @@ function setupvalues(){
    }
    for (let i = 0; i < lastvaluelength; i++){
       gel(`m_valueamount${i}`).textContent = format(player.m_values[i])
-      gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/10 (*${formatWhole(new Decimal(2).pow(player.m_valuebuys[i]))})`
+      gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/${formatWhole(new Decimal(10).plus(player.u_levelup))} (*${formatWhole(new Decimal(2).pow(player.m_valuebuys[i]))})`
       gel(`m_buybutton${i}`).textContent = format(valuecost(i,player.m_valuebuys[i]))
    }
+   gel("u_levelupcost").textContent = levelupupgradecost(player.u_levelup)
 }
 function buyvalue(i){
-  if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(10)){
+  if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
    player.m_number = player.m_number.minus(valuecost(i,player.m_valuebuys[i]))
    player.m_values[i] = player.m_values[i].plus(1)
    player.m_valuebuys[i] = player.m_valuebuys[i].plus(1)
@@ -53,13 +55,20 @@ function settab(i){
    }
    gel(`tab${i}`).style.display = "inline"
 }
-function settabbuttons(){
+function buylevelup(){
+   if (player.m_number.gte(levelupupgradecost(player.u_levelup))){
+      player.m_number = player.m_number.minus(levelupupgradecost(player.u_levelup))
+      player.u_levelup = player.u_levelup.plus(1)
+   }
+}
+function setbuttons(){
    for(let j = 0; j < 2; j++){
       gel(`tabbutton${j}`).onclick = () => {settab(j)}
    }
+   gel("u_levelup").onclick = () => {buylevelup()}
 }
 settab(0)
-settabbuttons()
+setbuttons()
 let deltatime = 0
 gel("loading").style.display = "none"
 setInterval(() => {
