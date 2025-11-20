@@ -20,7 +20,7 @@ function makevalues(list,meow){
           <td style="width: 35%">Level <span id="m_valuelevel${i}"></span></td>
           <td style="width: 30%"><span id="m_valueamount${i}"></span></td>
           <td style="width: 20%"><button id="m_buybutton${i}" onclick="console.log('meow')">${format(new Decimal(10).pow(i+1))}</button></td>
-        </tr><br>`
+        </tr>`
      
    }
    return kije
@@ -47,6 +47,19 @@ function buyvalue(i){
    player.m_valuebuys[i] = player.m_valuebuys[i].plus(1)
   }
 }
+function settab(i){
+   for(let j = 0; j < 2; j++){
+      gel(`tab${j}`).style.display = "none"
+   }
+   gel(`tab${i}`).style.display = "inline"
+}
+function settabbuttons(){
+   for(let j = 0; j < 2; j++){
+      gel(`tabbutton${j}`).onclick = () => {settab(j)}
+   }
+}
+settab(0)
+settabbuttons()
 let deltatime = 0
 gel("loading").style.display = "none"
 setInterval(() => {
