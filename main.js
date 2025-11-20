@@ -40,7 +40,7 @@ function setupvalues(){
       gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/${formatWhole(new Decimal(10).plus(player.u_levelup))} (*${formatWhole(new Decimal(2).pow(player.m_valuebuys[i]))})`
       gel(`m_buybutton${i}`).textContent = format(valuecost(i,player.m_valuebuys[i]))
    }
-   gel("u_levelupcost").textContent = levelupupgradecost(player.u_levelup)
+   gel("u_levelupcost").textContent = format(levelupupgradecost(player.u_levelup))
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
