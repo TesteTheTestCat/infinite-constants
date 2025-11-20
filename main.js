@@ -61,4 +61,5 @@ setInterval(() => {
     gel("m_number").textContent = format(player.m_number,8)
     gel("m_numberps").textContent = format(player.m_values[0].times(new Decimal(2).pow(player.m_valuebuys[0])),6)+"/s"
     setupvalues()
+   player.lasttick = Date.now()
 }, 1000/tickspersecond);
