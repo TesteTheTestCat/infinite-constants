@@ -21,3 +21,13 @@ button {
   border-radius: 0px;
   cursor: pointer;
 }
+#loading {
+  background-color: rgba(0,0,0,0.75); /* your color */
+  color: #ffffff;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 50%;
+  pointer-events:none;
+  z-index:10
+}

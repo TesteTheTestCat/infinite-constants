@@ -7,6 +7,8 @@ let player = {
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
     m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)]
 }
+gel("overlay").style.display = "none"
+gel("loading").style.display = "none"
 let lastvaluelength = 0
 const maxticks = 10000 //the maximum amount of ticks before ticksize increases
 const gel = (name) => document.getElementById(name)
@@ -52,6 +54,7 @@ setInterval(() => {
    deltatime += (Date.now() - player.lasttick)/1000 //this is needed. trust me.
    let ticksize = 1/tickspersecond
    if (deltatime/tickspersecond >= maxticks) {ticksize = deltatime/maxticks}
+   if (deltatime/ticksize > 500){gel("loading").style.display = "inline"}
    while (deltatime >= ticksize){
     for(let i = 0; i < player.m_values.length-1; i++){
        player.m_values[i] = player.m_values[i].add(player.m_values[i+1].times(ticksize).times(new Decimal(2).pow(player.m_valuebuys[i+1])))
@@ -59,6 +62,7 @@ setInterval(() => {
     player.m_number = player.m_number.add(player.m_values[0].times(ticksize).times(new Decimal(2).pow(player.m_valuebuys[0])))
     deltatime -= ticksize
    }
+   gel("loading").style.display = "none"
     gel("m_number").textContent = format(player.m_number,8)
     gel("m_numberps").textContent = format(player.m_values[0].times(new Decimal(2).pow(player.m_valuebuys[0])),6)+"/s"
     setupvalues()
