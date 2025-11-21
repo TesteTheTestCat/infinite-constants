@@ -1,5 +1,5 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost,levelupupgradecost} from "./helper.js"
+import {valuecost,levelupupgradecost, valueupupgradecost, makevalues} from "./helper.js"
 let player = {
     version: "alpha0.03",
     lasttick: Date.now(),
@@ -41,6 +41,7 @@ function setupvalues(){
       gel(`m_buybutton${i}`).textContent = format(valuecost(i,player.m_valuebuys[i]))
    }
    gel("u_levelupcost").textContent = format(levelupupgradecost(player.u_levelup))
+   gel("u_valueupcost").textContent = `Level 2 of Value ${player.m_values.length}, ${valueupupgradecost(player.m_values.length)}`
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
@@ -61,11 +62,20 @@ function buylevelup(){
       player.u_levelup = player.u_levelup.plus(1)
    }
 }
+function buyvalueup(){
+   let originallength = player.m_values.length
+  if (player.m_number.gte(valueupupgradecost(player.m_values.length)) && player.m_valuebuys[player.m_values.length].gte(2)){
+    player.m_values = makevalues(originallength+1)
+    player.m_valuebuys = makevalues(originallength+1)
+    player.m_number = new Decimal(0)
+  }
+}
 function setbuttons(){
    for(let j = 0; j < 2; j++){
       gel(`tabbutton${j}`).onclick = () => {settab(j)}
    }
    gel("u_levelup").onclick = () => {buylevelup()}
+   gel("u_valueup").onclick = () => {buyvalueup()}
 }
 settab(0)
 setbuttons()
