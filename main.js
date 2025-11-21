@@ -67,7 +67,7 @@ function buyvalueup(){
   if (player.m_number.gte(valueupupgradecost(player.m_values.length)) && player.m_valuebuys[player.m_values.length-1].gte(2)){
     player.m_values = constructvalues(originallength+1)
     player.m_valuebuys = constructvalues(originallength+1)
-    player.m_number = new Decimal(0)
+    player.m_number = new Decimal(10)
   }
 }
 function setbuttons(){
