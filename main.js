@@ -1,5 +1,5 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost,levelupupgradecost, valueupupgradecost, makevalues} from "./helper.js"
+import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues} from "./helper.js"
 let player = {
     version: "alpha0.03",
     lasttick: Date.now(),
@@ -65,8 +65,8 @@ function buylevelup(){
 function buyvalueup(){
    let originallength = player.m_values.length
   if (player.m_number.gte(valueupupgradecost(player.m_values.length)) && player.m_valuebuys[player.m_values.length].gte(2)){
-    player.m_values = makevalues(originallength+1)
-    player.m_valuebuys = makevalues(originallength+1)
+    player.m_values = constructvalues(originallength+1)
+    player.m_valuebuys = constructvalues(originallength+1)
     player.m_number = new Decimal(0)
   }
 }
