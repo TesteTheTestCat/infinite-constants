@@ -41,7 +41,7 @@ function setupvalues(){
       gel(`m_buybutton${i}`).textContent = format(valuecost(i,player.m_valuebuys[i]))
    }
    gel("u_levelupcost").textContent = format(levelupupgradecost(player.u_levelup))
-   gel("u_valueupcost").textContent = `Level 2 of Value ${player.m_values.length}, ${valueupupgradecost(player.m_values.length)}`
+   gel("u_valueupcost").textContent = `Level 2 Value ${formatWhole(player.m_values.length)}, ${format(valueupupgradecost(player.m_values.length))}`
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
@@ -64,7 +64,7 @@ function buylevelup(){
 }
 function buyvalueup(){
    let originallength = player.m_values.length
-  if (player.m_number.gte(valueupupgradecost(player.m_values.length)) && player.m_valuebuys[player.m_values.length].gte(2)){
+  if (player.m_number.gte(valueupupgradecost(player.m_values.length)) && player.m_valuebuys[player.m_values.length-1].gte(2)){
     player.m_values = constructvalues(originallength+1)
     player.m_valuebuys = constructvalues(originallength+1)
     player.m_number = new Decimal(0)
