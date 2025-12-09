@@ -1,5 +1,6 @@
 import {format, formatWhole} from "./formatting.js";
 import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues} from "./helper.js"
+import {kisaluline} from "./splashtext.js";
 let player = {
     version: "alpha0.03",
     lasttick: Date.now(),
@@ -77,12 +78,19 @@ function setbuttons(){
    gel("u_levelup").onclick = () => {buylevelup()}
    gel("u_valueup").onclick = () => {buyvalueup()}
 }
+function updatesplashtexts(){
+   gel("u_kisalutext").textContent = kisaluline()
+}
 settab(0)
 setbuttons()
 let deltatime = 0
+let deltasplashtext = 0 //reset to 0 at 600
 gel("loading").style.display = "none"
+updatesplashtexts()
 setInterval(() => {
    deltatime += (Date.now() - player.lasttick)/1000 //this is needed. trust me.
+   deltasplashtext += (Date.now() - player.lasttick)/1000 //same as this
+   if (deltasplashtext >= 600){deltasplashtext %= 600; updatesplashtexts()}
    let ticksize = 1/tickspersecond
    if (deltatime/tickspersecond >= maxticks) {ticksize = deltatime/maxticks}
    if (deltatime/ticksize > 500){gel("loading").style.display = "inline"}
