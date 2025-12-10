@@ -2,7 +2,7 @@ import {format, formatWhole} from "./formatting.js";
 import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues} from "./helper.js"
 import {kisaluline} from "./splashtext.js";
 let player = {
-    version: "alpha0.03",
+    version: "beta0.3",
     lasttick: Date.now(),
     m_number: new Decimal(10),
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
@@ -79,7 +79,7 @@ function setbuttons(){
    gel("u_valueup").onclick = () => {buyvalueup()}
 }
 function updatesplashtexts(){
-   gel("u_kisalutext").textContent = kisaluline()
+   gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
 }
 settab(0)
 setbuttons()
