@@ -2,7 +2,7 @@ import {format, formatWhole} from "./formatting.js";
 import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues} from "./helper.js"
 import {kisaluline} from "./splashtext.js";
 let player = {
-    version: "beta0.3",
+    version: "beta0.4",
     lasttick: Date.now(),
     m_number: new Decimal(10),
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
@@ -17,6 +17,7 @@ function exportsave(meow) {
    return btoa(JSON.stringify(meow)) //i'll keep it like this for now
 }
 function importsave(meow) {
+   if (meow == null){console.log("what"); return}
    let playerdata = JSON.parse(atob(meow))
    for (const i in playerdata) {try{player[i] = new Decimal(playerdata[i])}catch{console.log("oops!")}};
    player.m_valuebuys = []
@@ -26,8 +27,8 @@ function importsave(meow) {
    player.version = playerdata.version
    player.lasttick = playerdata.lasttick
 }
-let testsave = exportsave(player)
-importsave(testsave)
+function savesave() {localStorage.setItem("infinite-saves",exportsave(player))}
+function loadload() {importsave(localStorage.getItem("infinite-saves"))}
 function makevalues(list,otherlist){
    let kije = ""
    for(let i = 0; i < list.length; i++){
@@ -96,16 +97,21 @@ function setbuttons(){
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
 }
+loadload()
 settab(0)
 setbuttons()
 let deltatime = 0
 let deltasplashtext = 0 //reset to 0 at 600
+let deltasave = 0 //save every 3 minutes or so
 gel("loading").style.display = "none"
 updatesplashtexts()
 setInterval(() => {
-   deltatime += (Date.now() - player.lasttick)/1000 //this is needed. trust me.
-   deltasplashtext += (Date.now() - player.lasttick)/1000 //same as this
+   let dt = (Date.now() - player.lasttick)/1000
+   deltatime += dt //this is needed. trust me.
+   deltasplashtext += dt
+   deltasave += dt
    if (deltasplashtext >= 600){deltasplashtext %= 600; updatesplashtexts()}
+   if (deltasave >= 180){deltasave = 0; savesave()}
    let ticksize = 1/tickspersecond
    if (deltatime/tickspersecond >= maxticks) {ticksize = deltatime/maxticks}
    if (deltatime/ticksize > 500){gel("loading").style.display = "inline"}
