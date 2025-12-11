@@ -7,6 +7,9 @@ export function levelupupgradecost(buys){
 export function valueupupgradecost(i){
     return new Decimal(10).pow(new Decimal(2).pow(i))
 }
+export function levelpowerupgradecost(i){
+    return new Decimal(10).pow(new Decimal(22).times(new Decimal(1.65).pow(i)))
+}
 export function constructvalues(len){
     let list = []
     for(let j = 0; j < len; j++){
