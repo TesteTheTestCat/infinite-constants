@@ -22,11 +22,12 @@ function importsave(meow) {
    console.log(playerdata)
    for (const i in playerdata) {try{player[i] = new Decimal(playerdata[i])}catch{console.log("oops!")}};
    player.m_valuebuys = []
-   for (let i = 0; i < playerdata.m_valuebuys.length-1; i++) {player.m_valuebuys.append(new Decimal(playerdata.m_valuebuys[i]))};
+   for (let i = 0; i < playerdata.m_valuebuys.length-1; i++) {player.m_valuebuys.push(new Decimal(playerdata.m_valuebuys[i]))};
    player.m_values = []
-   for (let i = 0; i < playerdata.m_values.length-1; i++) {player.m_values.append(new Decimal(playerdata.m_values[i]))};
+   for (let i = 0; i < playerdata.m_values.length-1; i++) {player.m_values.push(new Decimal(playerdata.m_values[i]))};
    player.version = playerdata.version
    player.lasttick = playerdata.lasttick
+   console.log(player)
 }
 let testsave = exportsave(player)
 importsave(testsave)
