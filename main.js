@@ -13,7 +13,24 @@ let lastvaluelength = 0
 const maxticks = 10000 //the maximum amount of ticks before ticksize increases
 const gel = (name) => document.getElementById(name)
 const tickspersecond = 20
-function makevalues(list,meow){
+function exportsave(meow) {
+   console.log(JSON.stringify(meow))
+   return JSON.stringify(meow) //i'll keep it like this for now
+}
+function importsave(meow) {
+   let playerdata = JSON.parse(meow)
+   console.log(playerdata)
+   for (const i in playerdata) {try{player[i] = new Decimal(playerdata[i])}catch{console.log("oops!")}};
+   player.m_valuebuys = []
+   for (let i = 0; i < playerdata.m_valuebuys.length-1; i++) {player.m_valuebuys.append(new Decimal(playerdata.m_valuebuys[i]))};
+   player.m_values = []
+   for (let i = 0; i < playerdata.m_values.length-1; i++) {player.m_values.append(new Decimal(playerdata.m_values[i]))};
+   player.version = playerdata.version
+   player.lasttick = playerdata.lasttick
+}
+let testsave = exportsave(player)
+importsave(testsave)
+function makevalues(list,otherlist){
    let kije = ""
    for(let i = 0; i < list.length; i++){
      kije += `
