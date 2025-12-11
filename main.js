@@ -56,7 +56,7 @@ function setupvalues(){
    }
    for (let i = 0; i < lastvaluelength; i++){
       gel(`m_valueamount${i}`).textContent = format(player.m_values[i])
-      gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/${formatWhole(new Decimal(10).plus(player.u_levelup))} (*${formatWhole(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)))})`
+      gel(`m_valuelevel${i}`).textContent = `${formatWhole(player.m_valuebuys[i])}/${formatWhole(new Decimal(10).plus(player.u_levelup))} (*${formatWhole(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[i]))})`
       gel(`m_buybutton${i}`).textContent = format(valuecost(i,player.m_valuebuys[i]))
    }
    gel("u_levelupcost").textContent = format(levelupupgradecost(player.u_levelup))
@@ -131,7 +131,7 @@ setInterval(() => {
    let numberpersecond = player.m_values[0].times(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[0]))
    while (deltatime >= ticksize){
     for(let i = 0; i < player.m_values.length-1; i++){
-       player.m_values[i] = player.m_values[i].add(player.m_values[i+1].times(ticksize).times(new Decimal(2).pow(player.m_valuebuys[i+1])))
+       player.m_values[i] = player.m_values[i].add(player.m_values[i+1].times(ticksize).times(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[i+1])))
     }
     player.m_number = player.m_number.add(numberpersecond.times(ticksize))
     deltatime -= ticksize
