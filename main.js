@@ -69,7 +69,7 @@ function buyvalue(i){
   }
 }
 function settab(i){
-   for(let j = 0; j < 2; j++){
+   for(let j = -1; j < 2; j++){
       gel(`tab${j}`).style.display = "none"
    }
    gel(`tab${i}`).style.display = "inline"
@@ -89,7 +89,7 @@ function buyvalueup(){
   }
 }
 function setbuttons(){
-   for(let j = 0; j < 2; j++){
+   for(let j = -1; j < 2; j++){
       gel(`tabbutton${j}`).onclick = () => {settab(j)}
    }
    gel("u_levelup").onclick = () => {buylevelup()}
