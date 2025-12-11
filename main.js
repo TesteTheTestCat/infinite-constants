@@ -17,7 +17,7 @@ function exportsave(meow) {
    return btoa(JSON.stringify(meow)) //i'll keep it like this for now
 }
 function importsave(meow) {
-   let playerdata = atob(JSON.parse(meow))
+   let playerdata = JSON.parse(atob(meow))
    for (const i in playerdata) {try{player[i] = new Decimal(playerdata[i])}catch{console.log("oops!")}};
    player.m_valuebuys = []
    for (let i = 0; i < playerdata.m_valuebuys.length; i++) {player.m_valuebuys.push(new Decimal(playerdata.m_valuebuys[i]))};
