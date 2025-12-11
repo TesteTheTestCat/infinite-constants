@@ -93,6 +93,7 @@ function setbuttons(){
    }
    gel("u_levelup").onclick = () => {buylevelup()}
    gel("u_valueup").onclick = () => {buyvalueup()}
+   gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
 }
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
