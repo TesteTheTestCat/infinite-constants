@@ -9,6 +9,7 @@ let player = {
     m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
     u_levelup: new Decimal(0)
 }
+const hardreset = exportsave(player)
 let lastvaluelength = 0
 const maxticks = 10000 //the maximum amount of ticks before ticksize increases
 const gel = (name) => document.getElementById(name)
@@ -94,6 +95,8 @@ function setbuttons(){
    gel("u_levelup").onclick = () => {buylevelup()}
    gel("u_valueup").onclick = () => {buyvalueup()}
    gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
+   gel("o_save").onclick = () => {savesave()}
+   gel("o_hardreset").onclick = () => {importsave(hardreset); savesave()}
 }
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
