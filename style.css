@@ -23,6 +23,13 @@ h2 {
 .buttontable button {
   margin: 0;
 }
+.nomargin {
+  margin: 0;
+}
+.tbutton {
+  margin: 0;
+  width: 100%;
+}
 button {
   user-select: none;
   background-color: black;
