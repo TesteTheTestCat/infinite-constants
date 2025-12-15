@@ -73,6 +73,9 @@ function setupvalues(){
    }
    gel("c_catspace").textContent = format(player.c_catspace,3)
    gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace)))).minus(player.c_catspace),5)
+   if (catspacesoftcat(player.c_catspace).gte(1)){
+      gel("c_catsoftcat").textContent = `Your catspace is being ${format(catspacesoftcat(player.c_catspace),5)}-rooted!!`
+   }
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
