@@ -12,7 +12,7 @@ export function levelpowerupgradecost(i){
 }
 export function catspacesoftcat(c){
   if (c.lt(1e100)){
-    return 1 //-root
+    return new Decimal(1) //-root
   }
   return c.log10().minus(100).pow(2).plus(1) //-root
 }
