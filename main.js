@@ -8,7 +8,8 @@ let player = {
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
     m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
     u_levelup: new Decimal(0),
-    u_levelpowerup: new Decimal(0)
+    u_levelpowerup: new Decimal(0),
+    u_unlockcatspace: new Decimal(0)
 }
 const hardreset = exportsave(player)
 let lastvaluelength = 0
@@ -62,6 +63,13 @@ function setupvalues(){
    gel("u_levelupcost").textContent = format(levelupupgradecost(player.u_levelup))
    gel("u_valueupcost").textContent = `Level 2 Value ${formatWhole(player.m_values.length)}, ${format(valueupupgradecost(player.m_values.length))}`
    gel("u_levelpowerupcost").textContent = format(levelpowerupgradecost(player.u_levelpowerup))
+   if (player.u_unlockcatspace.lt(1)){
+      gel("u_unlockcatspace").style.display = "inline"
+      gel("tabbutton2").style.display = "none"
+   } else {
+      gel("u_unlockcatspace").style.display = "none"
+      gel("tabbutton2").style.display = "inline"
+   }
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
@@ -71,7 +79,7 @@ function buyvalue(i){
   }
 }
 function settab(i){
-   for(let j = -1; j < 2; j++){
+   for(let j = -1; j < 3; j++){
       gel(`tab${j}`).style.display = "none"
    }
    gel(`tab${i}`).style.display = "inline"
@@ -96,13 +104,20 @@ function buylevelpowerup(){
    player.u_levelpowerup = player.u_levelpowerup.plus(1)
   }
 }
+function buyunlockcatspace(){
+   if (player.m_number.gte(1e24) && player.u_unlockcatspace.lt(1)){
+      player.u_unlockcatspace = new Decimal(1)
+      player.m_number = player.m_number.minus(1e24)
+   }
+}
 function setbuttons(){
-   for(let j = -1; j < 2; j++){
+   for(let j = -1; j < 3; j++){
       gel(`tabbutton${j}`).onclick = () => {settab(j)}
    }
    gel("u_levelup").onclick = () => {buylevelup()}
    gel("u_valueup").onclick = () => {buyvalueup()}
    gel("u_levelpowerup").onclick = () => {buylevelpowerup()}
+   gel("u_unlockcatspace").onclick = () => {buyunlockcatspace()}
    gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
    gel("o_save").onclick = () => {savesave()}
    gel("o_hardreset").onclick = () => {importsave(hardreset); savesave()}
