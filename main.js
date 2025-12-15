@@ -1,5 +1,5 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat} from "./helper.js"
+import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat,catspacemulti} from "./helper.js"
 import {kisaluline} from "./splashtext.js";
 let player = {
     version: "beta0.4",
@@ -76,6 +76,7 @@ function setupvalues(){
    if (catspacesoftcat(player.c_catspace).gte(1)){
       gel("c_catsoftcat").textContent = `Your catspace is being ${format(catspacesoftcat(player.c_catspace),5)}-rooted!!`
    }
+   gel("c_catmulti").textContent = `Your catspace is *${format(catspacemulti(player.c_catspace),5)}-ing your Values!`
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
@@ -149,10 +150,10 @@ setInterval(() => {
    let ticksize = 1/tickspersecond
    if (deltatime/tickspersecond >= maxticks) {ticksize = deltatime/maxticks}
    if (deltatime/ticksize > 500){gel("loading").style.display = "inline"}
-   let numberpersecond = player.m_values[0].times(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[0]))
+   let numberpersecond = player.m_values[0].times(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[0])).times(catspacemulti(player.c_catspace))
    while (deltatime >= ticksize){
     for(let i = 0; i < player.m_values.length-1; i++){
-       player.m_values[i] = player.m_values[i].add(player.m_values[i+1].times(ticksize).times(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[i+1])))
+       player.m_values[i] = player.m_values[i].add(player.m_values[i+1].times(ticksize).times(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[i+1]))).times(catspacemulti(player.c_catspace))
     }
     player.m_number = player.m_number.add(numberpersecond.times(ticksize))
     if (player.u_unlockcatspace.gte(1)) {

@@ -16,6 +16,11 @@ export function catspacesoftcat(c){
   }
   return c.log10().minus(100).pow(2).plus(1) //-root
 }
+export function catspacemulti(c){
+    let a = c.log10().divide(100)
+    if (c.lt(1)){a = new Decimal(0)}
+    return a.plus(1)
+}
 export function constructvalues(len){
     let list = []
     for(let j = 0; j < len; j++){
