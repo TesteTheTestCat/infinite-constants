@@ -9,7 +9,8 @@ let player = {
     m_valuebuys: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
     u_levelup: new Decimal(0),
     u_levelpowerup: new Decimal(0),
-    u_unlockcatspace: new Decimal(0)
+    u_unlockcatspace: new Decimal(0),
+    c_catspace: new Decimal(1)
 }
 const hardreset = exportsave(player)
 let lastvaluelength = 0
@@ -70,6 +71,8 @@ function setupvalues(){
       gel("u_unlockcatspace").style.display = "none"
       gel("tabbutton2").style.display = "inline"
    }
+   gel("c_catspace").textContent = format(player.c_catspace)
+   gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).minus(1)))
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
@@ -149,6 +152,9 @@ setInterval(() => {
        player.m_values[i] = player.m_values[i].add(player.m_values[i+1].times(ticksize).times(new Decimal(2).plus(new Decimal(0.1).times(player.u_levelpowerup)).pow(player.m_valuebuys[i+1])))
     }
     player.m_number = player.m_number.add(numberpersecond.times(ticksize))
+    if (player.u_unlockcatspace.gte(1)) {
+      player.c_catspace = player.c_catspace.times(new Decimal(1.01).pow(ticksize))
+   }
     deltatime -= ticksize
    }
    gel("loading").style.display = "none"
