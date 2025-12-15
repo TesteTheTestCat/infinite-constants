@@ -11,6 +11,9 @@ table {
 tr {
     width: 100%;
 }
+h3 {
+  margin: 0;
+}
 h2 {
   margin: 0;
 }

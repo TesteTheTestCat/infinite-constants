@@ -1,5 +1,5 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost} from "./helper.js"
+import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat} from "./helper.js"
 import {kisaluline} from "./splashtext.js";
 let player = {
     version: "beta0.4",
@@ -71,8 +71,8 @@ function setupvalues(){
       gel("u_unlockcatspace").style.display = "none"
       gel("tabbutton2").style.display = "inline"
    }
-   gel("c_catspace").textContent = format(player.c_catspace)
-   gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).minus(1)))
+   gel("c_catspace").textContent = format(player.c_catspace,3)
+   gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace)))).minus(player.c_catspace),5)
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
@@ -153,7 +153,7 @@ setInterval(() => {
     }
     player.m_number = player.m_number.add(numberpersecond.times(ticksize))
     if (player.u_unlockcatspace.gte(1)) {
-      player.c_catspace = player.c_catspace.times(new Decimal(1.01).pow(ticksize))
+      player.c_catspace = player.c_catspace.times(new Decimal(1.01).pow(ticksize).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace))))
    }
     deltatime -= ticksize
    }
