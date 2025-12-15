@@ -73,7 +73,7 @@ function setupvalues(){
    }
    gel("c_catspace").textContent = format(player.c_catspace,3)
    gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace)))).minus(player.c_catspace),5)
-   if (catspacesoftcat(player.c_catspace).gte(1)){
+   if (catspacesoftcat(player.c_catspace).gt(1.0000001)){
       gel("c_catsoftcat").textContent = `Your catspace is being ${format(catspacesoftcat(player.c_catspace),5)}-rooted!!`
    }
    gel("c_catmulti").textContent = `Your catspace is *${format(catspacemulti(player.c_catspace),5)}-ing your Values!`
