@@ -17,6 +17,12 @@ h2 {
 .notlong{
   width:auto;
 }
+.buttontable {
+  margin: 0;
+}
+.buttontable button {
+  margin: 0;
+}
 button {
   user-select: none;
   background-color: black;
