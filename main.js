@@ -1,8 +1,8 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat,catspacemulti} from "./helper.js"
+import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat,catspacemulti,meowupcost} from "./helper.js"
 import {kisaluline} from "./splashtext.js";
 let player = {
-    version: "beta0.4",
+    version: "beta0.6",
     lasttick: Date.now(),
     m_number: new Decimal(10),
     m_values: [new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)],
@@ -10,7 +10,9 @@ let player = {
     u_levelup: new Decimal(0),
     u_levelpowerup: new Decimal(0),
     u_unlockcatspace: new Decimal(0),
-    c_catspace: new Decimal(1)
+    c_catspace: new Decimal(1),
+    c_catup: new Decimal(0),
+    c_meowup: new Decimal(0)
 }
 const hardreset = exportsave(player)
 let lastvaluelength = 0
@@ -77,6 +79,7 @@ function setupvalues(){
       gel("c_catsoftcat").textContent = `Your catspace is being ${format(catspacesoftcat(player.c_catspace),5)}-rooted!!`
    }
    gel("c_catmulti").textContent = `Your catspace is *${format(catspacemulti(player.c_catspace),5)}-ing your Values!`
+   gel("c_meowupcost").textContent = format(meowupcost(player.c_meowup))
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){

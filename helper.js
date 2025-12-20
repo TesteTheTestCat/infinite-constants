@@ -21,6 +21,12 @@ export function catspacemulti(c){
     if (c.lt(1)){a = new Decimal(0)}
     return a.plus(1)
 }
+export function meowupcost(i){
+  let a = new Decimal(i).pow(2) // x^2
+  let b = new Decimal(i).times(19) // 19x
+  let c = a.plus(b).divide(2) // (x²+19x)/2
+  return new Decimal(10).pow(c.plus(90)) // 10^(((x²+19x)/2)+90)
+}
 export function constructvalues(len){
     let list = []
     for(let j = 0; j < len; j++){
