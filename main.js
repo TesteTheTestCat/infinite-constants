@@ -1,5 +1,5 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat,catspacemulti,meowupcost} from "./helper.js"
+import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat,catspacemulti,meowupcost,catupcost} from "./helper.js"
 import {kisaluline} from "./splashtext.js";
 let player = {
     version: "beta0.6",
@@ -74,11 +74,12 @@ function setupvalues(){
       gel("tabbutton2").style.display = "inline"
    }
    gel("c_catspace").textContent = format(player.c_catspace,3)
-   gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace)))).minus(player.c_catspace),5)
+   gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).add(new Decimal(0.01).times(player.c_catup)).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace,player.c_meowup)))).minus(player.c_catspace),5)
    if (catspacesoftcat(player.c_catspace).gt(1.0000001)){
       gel("c_catsoftcat").textContent = `Your catspace is being ${format(catspacesoftcat(player.c_catspace),5)}-rooted!!`
    }
    gel("c_catmulti").textContent = `Your catspace is *${format(catspacemulti(player.c_catspace),5)}-ing your Values!`
+   gel("c_catupcost").textContent = format(catupcost(player.c_catup))
    gel("c_meowupcost").textContent = format(meowupcost(player.c_meowup))
 }
 function buyvalue(i){
@@ -120,6 +121,18 @@ function buyunlockcatspace(){
       player.m_number = player.m_number.minus(1e24)
    }
 }
+function buycatup(){
+   if (player.c_catspace.gte(catupcost(player.c_catup))){
+      player.c_catspace = player.c_catspace.divide(catupcost(player.c_catup))
+      player.c_catup = player.c_catup.plus(1)
+   }
+}
+function buymeowup(){
+   if (player.c_catspace.gte(meowupcost(player.c_meowup))){
+      player.c_catspace = player.c_catspace.divide(meowupcost(player.c_meowup))
+      player.c_meowup = player.c_meowup.plus(1)
+   }
+}
 function setbuttons(){
    for(let j = -1; j < 3; j++){
       gel(`tabbutton${j}`).onclick = () => {settab(j)}
@@ -131,6 +144,8 @@ function setbuttons(){
    gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
    gel("o_save").onclick = () => {savesave()}
    gel("o_hardreset").onclick = () => {importsave(hardreset); savesave()}
+   gel("u_catup").onclick = () => {buycatup()}
+   gel("u_meowup").onclick = () => {buymeowup()}
 }
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
@@ -162,7 +177,7 @@ setInterval(() => {
     }
     player.m_number = player.m_number.add(numberpersecond.times(ticksize))
     if (player.u_unlockcatspace.gte(1)) {
-      player.c_catspace = player.c_catspace.times(new Decimal(1.01).pow(ticksize).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace))))
+      player.c_catspace = player.c_catspace.times(new Decimal(1.01).add(new Decimal(0.01).times(player.c_catup)).pow(ticksize).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace,player.c_meowup))))
    }
     deltatime -= ticksize
    }
