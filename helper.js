@@ -23,7 +23,7 @@ export function catspacemulti(c){
     return a.plus(1)
 }
 export function catupcost(i){
-    return new Decimal(10).pow(new Decimal(40).times(new Decimal(1.05).pow(i)))
+    return new Decimal(10).pow(new Decimal(40).times(new Decimal(1.08).pow(i)))
 }
 export function meowupcost(i){
   let a = new Decimal(i).pow(2) // x^2
