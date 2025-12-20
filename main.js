@@ -144,8 +144,8 @@ function setbuttons(){
    gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
    gel("o_save").onclick = () => {savesave()}
    gel("o_hardreset").onclick = () => {importsave(hardreset); savesave()}
-   gel("u_catup").onclick = () => {buycatup()}
-   gel("u_meowup").onclick = () => {buymeowup()}
+   gel("c_catup").onclick = () => {buycatup()}
+   gel("c_meowup").onclick = () => {buymeowup()}
 }
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
