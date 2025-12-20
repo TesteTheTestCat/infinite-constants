@@ -77,6 +77,8 @@ function setupvalues(){
    gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).add(new Decimal(0.01).times(player.c_catup)).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace,player.c_meowup)))).minus(player.c_catspace),5)
    if (catspacesoftcat(player.c_catspace).gt(1.0000001)){
       gel("c_catsoftcat").textContent = `Your catspace is being ${format(catspacesoftcat(player.c_catspace),5)}-rooted!!`
+   } else {
+      gel("c_catsoftcat").textContent = ""
    }
    gel("c_catmulti").textContent = `Your catspace is *${format(catspacemulti(player.c_catspace),5)}-ing your Values!`
    gel("c_catupcost").textContent = format(catupcost(player.c_catup))
