@@ -149,11 +149,11 @@ function setbuttons(){
    gel("c_meowup").onclick = () => {buymeowup()}
 
    gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
-   gel("u_catgod").onclick = () => {gel("u_catgodtext").innerHTML = meowmeowmeow()}
+   gel("c_catgod").onclick = () => {gel("c_catgodtext").innerHTML = meowmeowmeow()}
 }
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
-   gel("u_catgodtext").innerHTML = catgodline()
+   gel("c_catgodtext").innerHTML = catgodline()
 }
 loadload()
 settab(0)
