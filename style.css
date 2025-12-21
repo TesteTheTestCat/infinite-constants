@@ -58,3 +58,17 @@ button {
 .upgradebuttons {
   text-align: center;
 }
+.rainbow {
+  animation: rainbowtext 3s linear 0s infinite
+}
+@keyframes rainbowtext {
+  0%    {color: hsl(0, 100%, 65%)}
+  12.5% {color: hsl(45, 100%, 65%)}
+  25%   {color: hsl(90, 100%, 65%)}
+  37.5% {color: hsl(135, 100%, 65%)}
+  50%   {color: hsl(180, 100%, 65%)}
+  62.5% {color: hsl(225, 100%, 65%)}
+  75%   {color: hsl(270, 100%, 65%)}
+  87.5% {color: hsl(315, 100%, 65%)}
+  100%  {color: hsl(360, 100%, 65%)}
+}

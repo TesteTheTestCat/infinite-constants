@@ -44,7 +44,7 @@ export function catgodline() {
     ,"nya~"
     ,"without any upgrades,<br>catspace will slow down at 1e100..."
   ]
-  if (Math.random() < 0.001){return "meow~"}
+  if (Math.random() < 0.001){return "<span class='rainbow'>meow~</span>"}
   return catgodlines[Math.floor(Math.random()*catgodlines.length)]
 }
 export function meowmeowmeow() {
