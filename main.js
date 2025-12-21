@@ -74,7 +74,7 @@ function setupvalues(){
       gel("tabbutton2").style.display = "inline"
    }
    gel("c_catspace").textContent = format(player.c_catspace,3)
-   gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.01).add(new Decimal(0.01).times(player.c_catup)).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace,player.c_meowup)))).minus(player.c_catspace),5)
+   gel("c_catspaceps").textContent = format(player.c_catspace.times(new Decimal(1.05).add(new Decimal(0.05).times(player.c_catup)).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace,player.c_meowup)))).minus(player.c_catspace),5)
    if (catspacesoftcat(player.c_catspace,player.c_meowup).gt(1.0000001)){
       gel("c_catsoftcat").textContent = `Your catspace is being ${format(catspacesoftcat(player.c_catspace,player.c_meowup),5)}-rooted!!`
    } else {
@@ -182,7 +182,7 @@ setInterval(() => {
     }
     player.m_number = player.m_number.add(numberpersecond.times(ticksize))
     if (player.u_unlockcatspace.gte(1)) {
-      player.c_catspace = player.c_catspace.times(new Decimal(1.01).add(new Decimal(0.01).times(player.c_catup)).pow(ticksize).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace,player.c_meowup))))
+      player.c_catspace = player.c_catspace.times(new Decimal(1.05).add(new Decimal(0.05).times(player.c_catup)).pow(ticksize).pow(new Decimal(1).divide(catspacesoftcat(player.c_catspace,player.c_meowup))))
    }
     deltatime -= ticksize
    }
