@@ -1,6 +1,6 @@
 import {format, formatWhole} from "./formatting.js";
 import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat,catspacemulti,meowupcost,catupcost} from "./helper.js"
-import {kisaluline} from "./splashtext.js";
+import {kisaluline,catgodline,meowmeowmeow} from "./splashtext.js";
 let player = {
     version: "beta0.6",
     lasttick: Date.now(),
@@ -143,14 +143,17 @@ function setbuttons(){
    gel("u_valueup").onclick = () => {buyvalueup()}
    gel("u_levelpowerup").onclick = () => {buylevelpowerup()}
    gel("u_unlockcatspace").onclick = () => {buyunlockcatspace()}
-   gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
    gel("o_save").onclick = () => {savesave()}
    gel("o_hardreset").onclick = () => {importsave(hardreset); savesave()}
    gel("c_catup").onclick = () => {buycatup()}
    gel("c_meowup").onclick = () => {buymeowup()}
+
+   gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
+   gel("u_catgod").onclick = () => {gel("u_catgodtext").innerHTML = meowmeowmeow()}
 }
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
+   gel("u_catgodtext").innerHTML = catgodline()
 }
 loadload()
 settab(0)
