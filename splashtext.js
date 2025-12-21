@@ -48,8 +48,8 @@ export function catgodline() {
   return catgodlines[Math.floor(Math.random()*catgodlines.length)]
 }
 export function meowmeowmeow() {
-  meows = ["meow ","mrrp ","nya ","purr "]
-  result = ""
+  const meows = ["meow ","mrrp ","nya ","purr "]
+  let result = ""
   for(let i = 0; i < 4; i++){
   result += meows[Math.floor(Math.random()*meows.length)]
   }
