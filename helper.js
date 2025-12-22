@@ -20,7 +20,7 @@ export function catspacesoftcat(c,meow=0){
 export function catspacemulti(c){
     let a = c.log10().divide(100)
     if (c.lt(1)){a = new Decimal(0)}
-    return a.plus(1)
+    return a.plus(1).pow(3)
 }
 export function catupcost(i){
     return new Decimal(10).pow(new Decimal(40).times(new Decimal(1.08).pow(i)))
