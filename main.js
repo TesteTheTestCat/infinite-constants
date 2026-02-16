@@ -142,10 +142,11 @@ function buymeowup(){
    }
 }
 function cattimereset(){
+  if (!(player.c_catspace.lte(1e100) || player.c_catspace.log10().divide(100).lte(player.c_catspacetime))){
   player.c_catspacetime = player.c_catspace.log10().divide(100)
   player.c_catup = new Decimal(0)
   player.c_meowup = new Decimal(0)
-  player.c_catspace = new Decimal(1)
+  player.c_catspace = new Decimal(1)}
 }
 function setbuttons(){
    for(let j = -1; j < 3; j++){
