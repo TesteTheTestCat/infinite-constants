@@ -39,5 +39,5 @@ export function constructvalues(len){
     return list
 }
 export function cattimemulti(i){
-  return i.divide(100).plus(1)
+  return new Decimal(1)
 }
