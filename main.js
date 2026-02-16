@@ -87,6 +87,7 @@ function setupvalues(){
    gel("c_catupcost").textContent = format(catupcost(player.c_catup))
    gel("c_meowupcost").textContent = format(meowupcost(player.c_meowup))
    gel("c_cattime").textContext = format(player.c_catspacetime)
+   console.log(gel("c_cattimemulti"))
    gel("c_cattimemulti").textContext = "*"+format(cattimemulti(player.c_catspacetime))+" better upgrades"
    gel("c_cattimeresetamount").textContent = format(player.c_catspace.log10().divide(100))
 }
