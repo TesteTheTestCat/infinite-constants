@@ -88,7 +88,6 @@ function setupvalues(){
    gel("c_meowupcost").textContent = format(meowupcost(player.c_meowup))
    gel("c_cattime").textContext = format(player.c_catspacetime)
    gel("c_cattimemulti").textContext = format(cattimemulti(player.c_catspacetime))
-   console.log(player.c_catspacetime)
    gel("c_cattimeresetamount").textContent = format(player.c_catspace.log10().divide(100))
 }
 function buyvalue(i){
