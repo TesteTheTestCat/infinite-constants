@@ -1,5 +1,7 @@
 import {format, formatWhole} from "./formatting.js";
-import {valuecost,levelupupgradecost, valueupupgradecost, constructvalues,levelpowerupgradecost,catspacesoftcat,catspacemulti,meowupcost,catupcost} from "./helper.js"
+import {valuecost,levelupupgradecost, valueupupgradecost,
+   constructvalues,levelpowerupgradecost,catspacesoftcat,
+   catspacemulti,meowupcost,catupcost,cattimemulti} from "./helper.js"
 import {kisaluline,catgodline,meowmeowmeow} from "./splashtext.js";
 let player = {
     version: "beta0.6",
@@ -12,7 +14,8 @@ let player = {
     u_unlockcatspace: new Decimal(0),
     c_catspace: new Decimal(1),
     c_catup: new Decimal(0),
-    c_meowup: new Decimal(0)
+    c_meowup: new Decimal(0),
+    c_catspacetime: new Decimal(0),
 }
 const hardreset = exportsave(player)
 let lastvaluelength = 0
@@ -83,6 +86,9 @@ function setupvalues(){
    gel("c_catmulti").textContent = `Your catspace is *${format(catspacemulti(player.c_catspace),5)}-ing your Values!`
    gel("c_catupcost").textContent = format(catupcost(player.c_catup))
    gel("c_meowupcost").textContent = format(meowupcost(player.c_meowup))
+   gel("c_cattime").textContext = format(player.c_catspacetime)
+   gel("c_cattimemulti").textContext = format(cattimemulti(player.c_catspacetime))
+   gel("c_cattimeresetamount").textContent = format(player.c_catspace.log10().divide(100))
 }
 function buyvalue(i){
   if(player.m_number.gte(valuecost(i,player.m_valuebuys[i])) && player.m_valuebuys[i].lt(new Decimal(10).plus(player.u_levelup))){
