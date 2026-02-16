@@ -88,6 +88,7 @@ function setupvalues(){
    gel("c_meowupcost").textContent = format(meowupcost(player.c_meowup))
    gel("c_cattime").textContext = format(player.c_catspacetime)
    gel("c_cattimemulti").textContext = format(cattimemulti(player.c_catspacetime))
+   console.log(player.c_catspacetime)
    gel("c_cattimeresetamount").textContent = format(player.c_catspace.log10().divide(100))
 }
 function buyvalue(i){
@@ -141,6 +142,12 @@ function buymeowup(){
       player.c_meowup = player.c_meowup.plus(1)
    }
 }
+function cattimereset(){
+  player.c_catspacetime = player.c_catspace.log10().divide(100)
+  player.c_catup = new Decimal(0)
+  player.c_meowup = new Decimal(0)
+  player.c_catspace = new Decimal(1)
+}
 function setbuttons(){
    for(let j = -1; j < 3; j++){
       gel(`tabbutton${j}`).onclick = () => {settab(j)}
@@ -156,6 +163,7 @@ function setbuttons(){
 
    gel("u_kisalu").onclick = () => {gel("u_kisalutext").innerHTML = kisaluline()}
    gel("c_catgod").onclick = () => {gel("c_catgodtext").innerHTML = meowmeowmeow()}
+   gel("c_cattimereset").onclick = () => {cattimereset()}
 }
 function updatesplashtexts(){
    gel("u_kisalutext").innerHTML = kisaluline() //lets me do cool things
